@@ -1,41 +1,26 @@
 <template>
   <div>
-    <h1 id="username">{{ userObject.username }}</h1>
-    <h4>{{ userObject.email }}</h4>
-    <h5>{{ userObject.bio }}</h5>
-    <h5>{{ userObject.birthdate }}</h5>
-    <h4 @click="followUser()">Follow This User</h4>
-    <delete-follow></delete-follow>
-    <h4>{{ followStatus }}</h4>
+    <h4 @click="unfollowUser()">Unfollow This User</h4>
+    <h4>{{ unfollowStatus }}</h4>
   </div>
 </template>
 
 <script>
 import cookies from "vue-cookies";
 import axios from "axios";
-import DeleteFollow from "./deleteFollowUser.vue";
 export default {
-  name: "DiscoverComponent",
-  components: {
-    DeleteFollow
-  },
-  props: {
-    userObject: {
-      type: Number,
-      required: true
-    }
-  },
+  name: "DeleteFollow",
   data() {
     return {
-      followStatus: ""
+      unfollowStatus: ""
     };
   },
   methods: {
-    followUser: function() {
+    unfollowUser: function() {
       axios
         .request({
           url: "https://tweeterest.ml/api/follows",
-          method: "POST",
+          method: "DELETE",
           headers: {
             "Content-Type": "application/json",
             "X-Api-Key": "EAvr7ARZpoTpcRnvMWmyGzSXNR9ynRHXtm1LCFEyjJopn"
@@ -47,11 +32,11 @@ export default {
         })
         .then(response => {
           console.log(response);
-          this.followStatus = "Successfully followed this User!";
+          this.unfollowStatus = "Successfully unfollowed this User!";
         })
         .catch(error => {
           console.log(error);
-          this.followStatus = "You can't follow a User twice!";
+          this.unfollowStatus = "You can't unfollow a User you aren't following!";
         });
     }
   }

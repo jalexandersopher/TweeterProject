@@ -34,6 +34,7 @@ export default {
       }).then((response) => {
           console.log(response)
           this.commentStatus = "Commented Successfully"
+          cookies.set('commentId', response.data.commentId)
       }).catch((error) => {
           console.log(error)
           this.commentStatus = "Failed to Comment"

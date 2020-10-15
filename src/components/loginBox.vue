@@ -66,6 +66,7 @@ export default {
           this.loginStatus = "Success! Please proceed to the Create Profile page to customize your profile!"
           cookies.set('loginToken', result.data.loginToken)
           cookies.set('userId', result.data.userId)
+          cookies.set('followId', result.data.userId)
           this.$router.push("/myProfile")
           })
         .catch( (error) => {

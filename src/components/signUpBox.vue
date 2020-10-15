@@ -76,6 +76,7 @@ export default {
           console.log(result)
           this.signUpStatus = "Success! Please proceed to the Login Page to log in!"
           cookies.set('loginToken', result.data.loginToken)
+          cookies.set('followId', result.data.userId) 
           this.$router.push("/login")
           })
         .catch( (error) => {
