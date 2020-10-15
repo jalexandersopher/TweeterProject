@@ -3,8 +3,9 @@
     <h1>This is a Tweet!</h1>
 
     <h3>{{ tweetObject.username }}</h3>
-    <h4>{{ tweetObject.content }}</h4>
+    <h4>{{ content }}</h4>
     <h4>{{ tweetObject.createdAt }}</h4>
+    <edit-tweet @update-tweet="updateTweet" v-if="isOwned" :tweetId="tweetObject.tweetId"></edit-tweet>
     <tweet-delete v-if="isOwned" :tweetId="tweetObject.tweetId"></tweet-delete>
     <tweet-comments></tweet-comments>
   </div>
@@ -14,11 +15,13 @@
 import TweetComments from "./tweetComments.vue";
 import TweetDelete from "./TweetDelete.vue";
 import cookies from "vue-cookies";
+import EditTweet from "./editTweetComponent.vue";
 export default {
   name: "FeedTweetContent",
   components: {
     TweetDelete,
     TweetComments,
+    EditTweet,
   },
   props: {
     tweetObject: {
@@ -28,8 +31,14 @@ export default {
   },
   data() {
       return {
-          isOwned: cookies.get("userId") == this.tweetObject.userId
+          isOwned: cookies.get("userId") == this.tweetObject.userId,
+          content: this.tweetObject.content
       }
+  },
+  methods: {
+    updateTweet(newContent) {
+      this.content = newContent;
+    }
   },
 };
 </script>
