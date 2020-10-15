@@ -7,6 +7,7 @@ import discover from "../views/discover.vue";
 import myFeed from "../views/myFeed.vue";
 import landingPage from "../views/landingPage.vue";
 import createTweetPage from "../views/createTweetPage.vue";
+import editProfilePage from "../views/editProfile.vue";
 
 Vue.use(VueRouter);
 
@@ -30,6 +31,11 @@ const routes = [
     path: "/myProfile",
     name: "myProfile",
     component: myProfile
+  },
+  {
+    path: "/editProfile",
+    name: "editProfile",
+    component: editProfilePage
   },
   {
     path: "/discover",

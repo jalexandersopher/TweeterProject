@@ -12,6 +12,10 @@
     <div id="create-tweet-link-container">
       <router-link to="/createTweet">Create a Tweet</router-link>
     </div>
+
+    <div id="login-link-container">
+      <router-link to="/editProfile">Edit Profile</router-link>
+    </div>
   </div>
 </template>
 
@@ -25,14 +29,15 @@ export default {
   name: "myProfilePage",
   components: {
     HeaderComponent,
-    profileComponent
+    profileComponent,
   },
   data() {
     return {
       username: "",
       email: "",
       bio: "",
-      birthdate: ""
+      birthdate: "",
+      profileStatus: ""
     };
   },
   mounted: function() {
@@ -55,10 +60,7 @@ export default {
         .then(result => {
           console.log(result);
           this.profileStatus = "This is your Profile!";
-          this.username = result.data;
-          this.email = result.data.email;
-          this.bio = result.data.bio;
-          this.birthdate = result.data.birthdate
+          this.username = result.data
         })
         .catch(error => {
           console.log(error);
