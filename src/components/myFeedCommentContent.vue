@@ -4,16 +4,19 @@
         <h5>{{ commentObject.username }}</h5>
         <h6>{{ commentObject.content }}</h6>
         <p>{{ commentObject.createdAt }}</p>
+        <edit-comment :commentId="commentObject.commentId"></edit-comment>
         <delete-comment :commentId="commentObject.commentId"></delete-comment>
     </div>
 </template>
 
 <script>
-import DeleteComment from "./deleteComment.vue"
+import DeleteComment from "./deleteComment.vue";
+import EditComment from "./editCommentComponent.vue";
     export default {
         name: "FeedCommentContent",
         components: {
-            DeleteComment
+            DeleteComment,
+            EditComment,
         },
         props: {
             commentObject: {
